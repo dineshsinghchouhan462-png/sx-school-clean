@@ -33,7 +33,7 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          
+
           {/* LOGO */}
           <a href="#" className="flex items-center gap-3">
             <img
@@ -60,13 +60,18 @@ export default function Navigation() {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button – PREMIUM FIX */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-foreground"
             aria-label="Toggle menu"
+            className={`md:hidden flex items-center justify-center h-11 w-11 rounded-full transition-all duration-300
+              ${
+                isScrolled
+                  ? "bg-transparent text-foreground"
+                  : "bg-black/30 backdrop-blur-md text-white"
+              }`}
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
