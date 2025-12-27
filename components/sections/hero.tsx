@@ -2,72 +2,71 @@
 
 import { useEffect, useState } from "react"
 
+const images = [
+  "/images/hero/hero-1.jpg",
+  "/images/hero/hero-2.jpg",
+  "/images/hero/hero-3.jpg",
+]
+
 export default function Hero() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [current, setCurrent] = useState(0)
 
   useEffect(() => {
-    setIsVisible(true)
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length)
+    }, 3500) // calm, premium speed
+
+    return () => clearInterval(interval)
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
-      {/* Hero Image */}
-      <div className="absolute inset-0 z-0">
-        <div
-          className={`w-full h-full transition-all duration-1500 ease-out ${
-            isVisible ? "opacity-100 scale-100" : "opacity-0 scale-105"
+    <section className="relative min-h-screen overflow-hidden bg-black">
+      {/* Slides */}
+      {images.map((src, index) => (
+        <img
+          key={src}
+          src={src}
+          alt="Saint Xavier's School Campus"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            index === current ? "opacity-100" : "opacity-0"
           }`}
-        >
-          <img
-            src="https://placehold.co/1920x1080?text=Students+in+morning+assembly+on+school+grounds+with+clear+sky+and+school+building+in+background+documentary+style+photography"
-            alt="Students in morning assembly on school grounds with clear sky and school building in background documentary style photography"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/80" />
-        </div>
-      </div>
+        />
+      ))}
+
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/55" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center py-32">
-        <div
-          className={`transition-all duration-1000 delay-300 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-foreground mb-8 leading-[1.1]">
-            Saint Xavier's
-            <br />
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-6 text-center">
+        <div className="max-w-4xl text-white">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium leading-tight">
+            Saint Xavier&apos;s <br />
             Senior Secondary School
           </h1>
-        </div>
 
-        <div
-          className={`transition-all duration-1000 delay-500 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          <div className="space-y-4 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            <p className="font-light">Hindi & English Medium</p>
-            <p className="font-light">Senior Secondary School</p>
-            <p className="font-light">Manasar, Nagaur District, Rajasthan</p>
-          </div>
-        </div>
+          <p className="mt-6 text-lg md:text-xl text-white/90">
+            Hindi & English Medium · Manasar, Nagaur District, Rajasthan
+          </p>
 
-        <div
-          className={`mt-12 transition-all duration-1000 delay-700 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          <p className="text-base md:text-lg text-foreground/80 max-w-3xl mx-auto font-light leading-relaxed">
-            An institution committed to academic excellence, character development, and the holistic growth of every
-            student entrusted to our care.
+          <p className="mt-4 text-base md:text-lg text-white/80 font-light">
+            An institution committed to academic excellence, discipline,
+            and holistic student development.
           </p>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10">
-        <div className="w-px h-16 bg-gradient-to-b from-transparent via-foreground/40 to-transparent animate-pulse" />
+      {/* Slide indicators */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrent(index)}
+            className={`w-2.5 h-2.5 rounded-full transition ${
+              index === current ? "bg-white" : "bg-white/40"
+            }`}
+            aria-label={`Slide ${index + 1}`}
+          />
+        ))}
       </div>
     </section>
   )
