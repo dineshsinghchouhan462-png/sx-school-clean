@@ -1,3 +1,5 @@
+import Navigation from "@/components/navigation"
+
 import Hero from "@/components/sections/hero"
 import Trust from "@/components/sections/trust"
 import About from "@/components/sections/about"
@@ -8,11 +10,10 @@ import Accessibility from "@/components/sections/accessibility"
 import Gallery from "@/components/sections/gallery"
 import Contact from "@/components/sections/contact"
 import Footer from "@/components/sections/footer"
-import Navigation from "@/components/navigation"
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main>
       <Navigation />
       <Hero />
       <Trust />
