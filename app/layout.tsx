@@ -2,11 +2,18 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+})
 
 export const metadata: Metadata = {
-  title: "Saint Xavier's Senior Secondary School",
-  description: "Senior Secondary School in Manasar, Nagaur, Rajasthan"
+  title: "Saint Xavier's Senior Secondary School | Manasar, Nagaur",
+  description:
+    "Saint Xavier's Senior Secondary School, Manasar, Nagaur District, Rajasthan. Hindi & English Medium school committed to academic excellence and discipline.",
+  icons: {
+    icon: "/images/logo/logo.png", // favicon
+  },
 }
 
 export default function RootLayout({
@@ -16,7 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} pt-20 antialiased`}>
+        {children}
+      </body>
     </html>
   )
 }
