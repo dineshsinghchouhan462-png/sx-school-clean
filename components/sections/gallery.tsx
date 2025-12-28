@@ -30,8 +30,8 @@ export default function Gallery() {
       entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            const i = Number(entry.target.getAttribute("data-index"))
-            setVisible(v => (v.includes(i) ? v : [...v, i]))
+            const index = Number(entry.target.getAttribute("data-index"))
+            setVisible(v => (v.includes(index) ? v : [...v, index]))
           }
         })
       },
@@ -43,10 +43,10 @@ export default function Gallery() {
   }, [])
 
   return (
-    <section id="gallery" className="py-32 bg-background">
+    <section id="gallery" className="py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-32">
 
-        {/* CINEMATIC OPENING */}
+        {/* BIG OPENING SHOTS */}
         {images.slice(0, 2).map((img, i) => (
           <div
             key={i}
@@ -55,21 +55,22 @@ export default function Gallery() {
             className={`relative overflow-hidden rounded-3xl transition-all duration-[1200ms]
               ${visible.includes(i)
                 ? "opacity-100 translate-y-0 scale-100"
-                : "opacity-0 translate-y-16 scale-[0.96]"}
+                : "opacity-0 translate-y-16 scale-[0.97]"}
             `}
           >
             <img
               src={img.src}
               alt={img.caption}
-              className="w-full h-[480px] object-cover transition-transform duration-[1400ms]
-                group-hover:scale-[1.03]"
+              className={`w-full h-[460px] object-cover transition-transform duration-[1400ms]
+                ${visible.includes(i) ? "scale-100" : "scale-[1.06]"}
+              `}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <p
-              className={`absolute bottom-8 left-8 text-white text-xl tracking-wide transition-all duration-700
+              className={`absolute bottom-8 left-8 text-white text-xl transition-all duration-700
                 ${visible.includes(i)
                   ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"}
+                  : "opacity-0 translate-y-4"}
               `}
             >
               {img.caption}
@@ -77,76 +78,42 @@ export default function Gallery() {
           </div>
         ))}
 
-        {/* EDITORIAL RHYTHM */}
-        {images.slice(2).reduce((rows: any[], img, i) => {
-          if (i % 3 === 0) rows.push(images.slice(2 + i, 2 + i + 3))
-          return rows
-        }, []).map((row: any[], rowIndex: number) => (
-          <div key={rowIndex} className="grid grid-cols-1 md:grid-cols-3 gap-12">
-
-            {/* BIG IMAGE */}
-            <div
-              ref={el => (refs.current[rowIndex * 3 + 2] = el)}
-              data-index={rowIndex * 3 + 2}
-              className={`md:col-span-2 relative overflow-hidden rounded-3xl transition-all duration-[1200ms]
-                ${visible.includes(rowIndex * 3 + 2)
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-16"}
-              `}
-            >
-              <img
-                src={row[0]?.src}
-                alt={row[0]?.caption}
-                className="w-full h-[420px] object-cover transition-transform duration-[1400ms]
-                  ${visible.includes(rowIndex * 3 + 2) ? "scale-100" : "scale-[1.05]"}
-                "
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <p className={`absolute bottom-6 left-6 text-white text-lg transition-all duration-700
-                ${visible.includes(rowIndex * 3 + 2)
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"}
-              `}>
-                {row[0]?.caption}
-              </p>
-            </div>
-
-            {/* STACKED IMAGES */}
-            <div className="flex flex-col gap-12">
-              {row.slice(1).map((img: any, j: number) => {
-                const idx = rowIndex * 3 + 3 + j
-                return (
-                  <div
-                    key={idx}
-                    ref={el => (refs.current[idx] = el)}
-                    data-index={idx}
-                    className={`relative overflow-hidden rounded-2xl transition-all duration-[1000ms]
-                      ${visible.includes(idx)
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-12"}
-                    `}
-                  >
-                    <img
-                      src={img.src}
-                      alt={img.caption}
-                      className={`w-full h-[190px] object-cover transition-transform duration-[1200ms]
-                        ${visible.includes(idx) ? "scale-100" : "scale-[1.06]"}
-                      `}
-                    />
-                    <div className="absolute inset-0 bg-black/40" />
-                    <p className={`absolute bottom-4 left-4 text-white text-sm transition-all duration-700
-                      ${visible.includes(idx)
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-3"}
-                    `}>
-                      {img.caption}
-                    </p>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        ))}
+        {/* EDITORIAL GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          {images.slice(2).map((img, i) => {
+            const index = i + 2
+            return (
+              <div
+                key={index}
+                ref={el => (refs.current[index] = el)}
+                data-index={index}
+                className={`relative overflow-hidden rounded-2xl transition-all duration-[1000ms]
+                  ${visible.includes(index)
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-14"}
+                `}
+              >
+                <img
+                  src={img.src}
+                  alt={img.caption}
+                  className={`w-full h-[300px] object-cover transition-transform duration-[1200ms]
+                    ${visible.includes(index) ? "scale-100" : "scale-[1.08]"}
+                  `}
+                />
+                <div className="absolute inset-0 bg-black/40" />
+                <p
+                  className={`absolute bottom-5 left-5 text-white text-sm transition-all duration-700
+                    ${visible.includes(index)
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-3"}
+                  `}
+                >
+                  {img.caption}
+                </p>
+              </div>
+            )
+          })}
+        </div>
 
       </div>
     </section>
