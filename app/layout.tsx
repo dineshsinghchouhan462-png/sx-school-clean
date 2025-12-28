@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-
 import ScrollProgress from "@/components/scroll-progress"
 
 const inter = Inter({
@@ -26,9 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} pt-20 antialiased`}>
-        {/* Scroll Progress Indicator */}
         <ScrollProgress />
-
         {children}
       </body>
     </html>
