@@ -25,35 +25,26 @@ export default function Gallery() {
     <section id="gallery" className="py-28 bg-background">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-24">
 
-        {/* SECTION TITLE */}
-        <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground">
-          Campus Life
-        </h2>
-
-        {/* CINEMATIC OPENING (2 IMAGES) */}
-        <div className="grid grid-cols-1 gap-16">
+        {/* ===== TOP 2 BIG CINEMATIC IMAGES ===== */}
+        <div className="space-y-20">
           {images.slice(0, 2).map((img, i) => (
             <div
               key={i}
               onClick={() => setActive(active === i ? null : i)}
-              className="relative overflow-hidden rounded-3xl cursor-pointer group"
+              className="relative overflow-hidden rounded-3xl cursor-pointer"
             >
               <img
                 src={img.src}
                 alt={img.caption}
-                className="w-full h-[460px] object-cover transition-transform duration-[900ms] group-hover:scale-[1.03]"
+                className={`w-full h-[480px] object-cover transition-transform duration-700
+                  ${active === i ? "scale-[1.03]" : "scale-100"}
+                `}
               />
-
-              {/* Overlay */}
-              <div
-                className={`absolute inset-0 bg-black/50 transition-opacity duration-500
-                ${active === i ? "opacity-100" : "opacity-0"}`}
-              />
-
-              {/* Caption */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <p
                 className={`absolute bottom-8 left-8 text-white text-xl tracking-wide transition-all duration-500
-                ${active === i ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                  ${active === i ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
+                `}
               >
                 {img.caption}
               </p>
@@ -61,32 +52,32 @@ export default function Gallery() {
           ))}
         </div>
 
-        {/* EDITORIAL GRID (COMPACT & PREMIUM) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        {/* ===== COMPACT PREMIUM GRID (NO LONG SCROLL) ===== */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {images.slice(2).map((img, i) => {
             const index = i + 2
             return (
               <div
                 key={index}
                 onClick={() => setActive(active === index ? null : index)}
-                className="relative overflow-hidden rounded-2xl cursor-pointer group"
+                className="relative overflow-hidden rounded-2xl cursor-pointer"
               >
                 <img
                   src={img.src}
                   alt={img.caption}
-                  className="w-full h-[260px] object-cover transition-transform duration-[800ms] group-hover:scale-[1.04]"
+                  className={`w-full h-[220px] object-cover transition-transform duration-700
+                    ${active === index ? "scale-[1.05]" : "scale-100"}
+                  `}
                 />
-
-                {/* Overlay */}
                 <div
-                  className={`absolute inset-0 bg-black/45 transition-opacity duration-500
-                  ${active === index ? "opacity-100" : "opacity-0"}`}
+                  className={`absolute inset-0 bg-black/40 transition-opacity duration-500
+                    ${active === index ? "opacity-100" : "opacity-0"}
+                  `}
                 />
-
-                {/* Caption */}
                 <p
-                  className={`absolute bottom-5 left-5 text-white text-sm transition-all duration-500
-                  ${active === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+                  className={`absolute bottom-4 left-4 text-white text-sm transition-all duration-500
+                    ${active === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}
+                  `}
                 >
                   {img.caption}
                 </p>
