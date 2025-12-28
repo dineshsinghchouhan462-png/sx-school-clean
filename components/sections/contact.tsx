@@ -1,127 +1,74 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
 import { MapPin, Phone, Clock, ExternalLink } from "lucide-react"
 
 export default function Contact() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  const contactInfo = [
-    {
-      icon: MapPin,
-      title: "Address",
-      content: "Saint Xavier's Senior Secondary School\nManasar, Nagaur District\nRajasthan, India",
-    },
-    {
-      icon: Phone,
-      title: "Contact",
-      content: "+91 XXXXX XXXXX\nadmin@saintxaviersmanasar.edu.in",
-    },
-    {
-      icon: Clock,
-      title: "Operating Days",
-      content: "Monday – Saturday\n8:00 AM – 4:00 PM",
-    },
-  ]
-
   return (
-    <section id="contact" ref={sectionRef} className="py-24 md:py-32 bg-accent/30">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div
-          className={`mb-20 transition-all duration-1000 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}
-        >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-foreground">
+    <section id="contact" className="py-28 bg-muted/30">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+
+        {/* Section Header */}
+        <div className="mb-16">
+          <div className="h-px w-20 bg-primary/40 mb-6" />
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight">
             Contact & Location
           </h2>
+          <p className="mt-4 text-muted-foreground max-w-xl">
+            Reach out to Saint Xavier's Senior Secondary School for admissions,
+            inquiries, or campus visits.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Contact Information */}
-          <div className="space-y-12">
-            {contactInfo.map((info, index) => {
-              const Icon = info.icon
-              return (
-                <div
-                  key={info.title}
-                  className={`transition-all duration-700 ease-out ${
-                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-                  }`}
-                  style={{ transitionDelay: `${index * 150}ms` }}
-                >
-                  <div className="flex items-start gap-4">
-                    <Icon className="w-6 h-6 text-foreground mt-1" strokeWidth={1.5} />
-                    <div>
-                      <h3 className="text-lg font-medium text-foreground mb-2 tracking-tight">{info.title}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
-                        {info.content}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
+        {/* Content Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
 
-            <div
-              className={`transition-all duration-700 ease-out ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-              }`}
-              style={{ transitionDelay: "450ms" }}
-            >
-              <a
-                href="https://maps.google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-foreground hover:text-muted-foreground transition-colors group"
-              >
-                <span className="border-b border-foreground group-hover:border-muted-foreground transition-colors">
-                  View on Google Maps
-                </span>
-                <ExternalLink className="w-4 h-4" strokeWidth={1.5} />
-              </a>
-            </div>
+          {/* Address */}
+          <div className="rounded-3xl bg-background p-8 shadow-sm hover:shadow-md transition">
+            <MapPin className="h-6 w-6 text-primary mb-4" />
+            <h3 className="text-lg font-medium mb-2">Address</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Saint Xavier's Senior Secondary School<br />
+              Manasar, Nagaur District<br />
+              Rajasthan, India
+            </p>
           </div>
 
-          {/* Map */}
-          <div
-            className={`transition-all duration-700 ease-out ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-            }`}
-            style={{ transitionDelay: "300ms" }}
+          {/* Contact */}
+          <div className="rounded-3xl bg-background p-8 shadow-sm hover:shadow-md transition">
+            <Phone className="h-6 w-6 text-primary mb-4" />
+            <h3 className="text-lg font-medium mb-2">Contact</h3>
+            <p className="text-muted-foreground">
+              +91 XXXXX XXXXX
+            </p>
+            <p className="text-muted-foreground mt-1">
+              admin@saintxaviersmanasar.edu.in
+            </p>
+          </div>
+
+          {/* Timings */}
+          <div className="rounded-3xl bg-background p-8 shadow-sm hover:shadow-md transition">
+            <Clock className="h-6 w-6 text-primary mb-4" />
+            <h3 className="text-lg font-medium mb-2">Operating Days</h3>
+            <p className="text-muted-foreground">
+              Monday – Saturday<br />
+              8:00 AM – 4:00 PM
+            </p>
+          </div>
+
+        </div>
+
+        {/* Google Maps CTA */}
+        <div className="mt-16">
+          <a
+            href="https://maps.google.com"
+            target="_blank"
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
           >
-            <div className="aspect-[4/3] bg-muted/30 rounded-sm overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d227748.99973022967!2d73.83384!3d26.55!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDMzJzAwLjAiTiA3M8KwNTAnMDEuOCJF!5e0!3m2!1sen!2sin!4v1234567890"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="School Location Map"
-              />
-            </div>
-          </div>
+            View on Google Maps
+            <ExternalLink className="h-4 w-4" />
+          </a>
         </div>
+
       </div>
     </section>
   )
