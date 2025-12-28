@@ -3,62 +3,51 @@
 import { useEffect, useRef, useState } from "react"
 
 export default function About() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 },
+      ([entry]) => entry.isIntersecting && setVisible(true),
+      { threshold: 0.15 }
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
+    if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [])
 
   return (
-    <section id="about" ref={sectionRef} className="py-24 md:py-32 bg-accent/30">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
+    <section ref={ref} className="bg-muted/30">
+      {/* subtle divider */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="border-t border-border/60" />
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6 lg:px-8 py-24 md:py-28">
         <div
-          className={`transition-all duration-1000 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`transition-all duration-[1200ms] ease-out ${
+            visible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6"
           }`}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-foreground mb-12 md:mb-16">
-            About the School
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-foreground mb-8">
+            About Saint Xavier’s
           </h2>
 
-          <div className="space-y-8 text-base md:text-lg text-foreground/80 leading-relaxed">
-            <p>
-              Saint Xavier's Senior Secondary School stands as an institution dedicated to providing quality education
-              that shapes both mind and character. Located in Manasar, Nagaur District, we serve the educational needs
-              of families across villages, suburbs, and nearby urban areas.
-            </p>
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl">
+            Saint Xavier’s Senior Secondary School, Manasar, is committed to
+            disciplined education, academic clarity, and character formation.
+            Serving students from villages, suburbs, and nearby towns, the
+            school provides a structured environment where learning is focused,
+            values are respected, and responsibility is nurtured.
+          </p>
 
-            <p>
-              Our approach to education is grounded in discipline, structured learning, and a deep sense of
-              responsibility toward each student. We believe that true education extends beyond textbooks—it cultivates
-              critical thinking, moral integrity, and a commitment to service.
-            </p>
-
-            <p>
-              As a Hindi and English medium senior secondary school, we prepare students for academic success while
-              nurturing their personal development. Our boarding facility provides a safe, supportive environment where
-              students from diverse backgrounds come together in pursuit of knowledge and growth.
-            </p>
-
-            <p>
-              We are committed to serving our community with excellence, honesty, and an unwavering dedication to the
-              educational and personal development of every child in our care.
-            </p>
-          </div>
+          <p className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl">
+            With Hindi and English medium instruction and residential
+            facilities, the institution emphasizes consistency, safety, and
+            long-term academic growth.
+          </p>
         </div>
       </div>
     </section>
