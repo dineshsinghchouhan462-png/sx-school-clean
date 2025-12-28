@@ -2,6 +2,7 @@ import Navigation from "@/components/navigation"
 
 import Hero from "@/components/sections/hero"
 import Trust from "@/components/sections/trust"
+import Streams from "@/components/sections/streams"
 import About from "@/components/sections/about"
 import Academics from "@/components/sections/academics"
 import Faculty from "@/components/sections/faculty"
@@ -17,6 +18,7 @@ export default function Home() {
       <Navigation />
       <Hero />
       <Trust />
+      <Streams />
       <About />
       <Academics />
       <Faculty />
