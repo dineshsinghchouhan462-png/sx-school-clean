@@ -1,81 +1,114 @@
-""use client"
+"use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 
 const images = [
-  { src: "/images/gallery/gallery-1.jpg", caption: "Morning Assembly & Discipline", type: "large" },
-  { src: "/images/gallery/gallery-2.jpg", caption: "School Leadership & Achievements", type: "large" },
+  { src: "/images/gallery/gallery-1.jpg", caption: "Morning Assembly & Discipline" },
+  { src: "/images/gallery/gallery-2.jpg", caption: "School Leadership & Achievements" },
 
-  { src: "/images/gallery/gallery-3.jpg", caption: "Award Ceremony", type: "small" },
-  { src: "/images/gallery/gallery-4.jpg", caption: "Student Felicitation", type: "small" },
+  { src: "/images/gallery/gallery-3.jpg", caption: "Award Ceremony" },
+  { src: "/images/gallery/gallery-4.jpg", caption: "Student Felicitation" },
 
-  { src: "/images/gallery/gallery-5.jpg", caption: "Community & Values", type: "small" },
-  { src: "/images/gallery/gallery-6.jpg", caption: "Mentorship & Guidance", type: "small" },
+  { src: "/images/gallery/gallery-5.jpg", caption: "Community & Values" },
+  { src: "/images/gallery/gallery-6.jpg", caption: "Guidance & Mentorship" },
 
-  { src: "/images/gallery/gallery-7.jpg", caption: "Early Learning Environment", type: "large" },
+  { src: "/images/gallery/gallery-7.jpg", caption: "Early Learning Environment" },
+  { src: "/images/gallery/gallery-8.jpg", caption: "Activity-Based Learning" },
 
-  { src: "/images/gallery/gallery-8.jpg", caption: "Activity-Based Learning", type: "small" },
-  { src: "/images/gallery/gallery-9.jpg", caption: "Classroom Engagement", type: "small" },
+  { src: "/images/gallery/gallery-9.jpg", caption: "Student Engagement" },
+  { src: "/images/gallery/gallery-10.jpg", caption: "Cultural Activities" },
 
-  { src: "/images/gallery/gallery-10.jpg", caption: "Celebrations & Culture", type: "small" },
-  { src: "/images/gallery/gallery-11.jpg", caption: "Holistic Development", type: "small" },
+  { src: "/images/gallery/gallery-11.jpg", caption: "Celebrations & Togetherness" },
 ]
 
-function GalleryItem({ src, caption, type }: any) {
-  const ref = useRef<HTMLDivElement | null>(null)
-  const [visible, setVisible] = useState(false)
+export default function Gallery() {
+  const refs = useRef<HTMLDivElement[]>([])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => entry.isIntersecting && setVisible(true),
-      { threshold: 0.4 }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible")
+          }
+        })
+      },
+      { threshold: 0.3 }
     )
-    if (ref.current) observer.observe(ref.current)
+
+    refs.current.forEach((el) => el && observer.observe(el))
     return () => observer.disconnect()
   }, [])
 
   return (
-    <div
-      ref={ref}
-      className={`relative overflow-hidden rounded-3xl transition-all duration-1000 ${
-        type === "large" ? "col-span-2" : "col-span-1"
-      }`}
-    >
-      <img
-        src={src}
-        alt={caption}
-        className={`w-full h-full object-cover transition-transform duration-[1200ms] ease-out ${
-          visible ? "scale-100" : "scale-105"
-        }`}
-      />
-
-      <div
-        className={`absolute inset-0 flex items-end p-6 bg-gradient-to-t from-black/60 to-transparent transition-opacity duration-700 ${
-          visible ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <p className="text-white text-sm md:text-base font-light tracking-wide">
-          {caption}
-        </p>
-      </div>
-    </div>
-  )
-}
-
-export default function Gallery() {
-  return (
     <section id="gallery" className="py-24">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-medium mb-16 tracking-tight">
-          Life at Saint Xavier’s
-        </h2>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-16">
 
-        <div className="grid grid-cols-2 gap-6">
-          {images.map((img, i) => (
-            <GalleryItem key={i} {...img} />
+        {/* BIG IMAGE 1 & 2 */}
+        {images.slice(0, 2).map((img, i) => (
+          <div
+            key={i}
+            ref={(el) => (refs.current[i] = el!)}
+            className="group relative overflow-hidden rounded-3xl opacity-0 translate-y-8 transition-all duration-700"
+          >
+            <img
+              src={img.src}
+              alt={img.caption}
+              className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <p className="absolute bottom-6 left-6 text-white text-lg font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              {img.caption}
+            </p>
+          </div>
+        ))}
+
+        {/* GRID IMAGES */}
+        <div className="grid md:grid-cols-2 gap-10">
+          {images.slice(2, 10).map((img, i) => (
+            <div
+              key={i}
+              ref={(el) => (refs.current[i + 2] = el!)}
+              className="group relative overflow-hidden rounded-2xl opacity-0 translate-y-8 transition-all duration-700"
+            >
+              <img
+                src={img.src}
+                alt={img.caption}
+                className="w-full h-[280px] object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <p className="absolute bottom-4 left-4 text-white text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                {img.caption}
+              </p>
+            </div>
           ))}
         </div>
+
+        {/* FINAL BIG IMAGE */}
+        <div
+          ref={(el) => (refs.current[10] = el!)}
+          className="group relative overflow-hidden rounded-3xl opacity-0 translate-y-8 transition-all duration-700"
+        >
+          <img
+            src={images[10].src}
+            alt={images[10].caption}
+            className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <p className="absolute bottom-6 left-6 text-white text-lg font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            {images[10].caption}
+          </p>
+        </div>
+
       </div>
+
+      {/* visibility animation */}
+      <style jsx>{`
+        .is-visible {
+          opacity: 1 !important;
+          transform: translateY(0) !important;
+        }
+      `}</style>
     </section>
   )
 }
