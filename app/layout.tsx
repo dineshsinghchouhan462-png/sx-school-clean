@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+
 import ScrollProgress from "@/components/scroll-progress"
+import FloatingCTA from "@/components/floating-cta"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,8 +27,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} pt-20 antialiased`}>
+        {/* Top scroll indicator */}
         <ScrollProgress />
+
+        {/* Main website content */}
         {children}
+
+        {/* Floating WhatsApp + Call CTA (global) */}
+        <FloatingCTA />
       </body>
     </html>
   )
