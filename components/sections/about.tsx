@@ -17,7 +17,11 @@ export default function About() {
   }, [])
 
   return (
-    <section ref={ref} className="bg-muted/30">
+    <section
+      id="about"   // ✅ THIS IS THE FIX
+      ref={ref}
+      className="bg-muted/30"
+    >
       {/* subtle divider */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="border-t border-border/60" />
