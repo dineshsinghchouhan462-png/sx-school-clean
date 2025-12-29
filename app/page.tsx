@@ -10,7 +10,7 @@ import Facilities from "@/components/sections/facilities"
 import Hostel from "@/components/sections/hostel"
 import Accessibility from "@/components/sections/accessibility"
 import Gallery from "@/components/sections/gallery"
-import Social from "@/components/sections/social"
+import SocialMedia from "@/components/sections/social-media"
 import Contact from "@/components/sections/contact"
 import Footer from "@/components/sections/footer"
 
@@ -26,12 +26,15 @@ export default function Home() {
       <Academics />
       <Faculty />
       <Facilities />
+
+      {/* Hostel Section */}
       <Hostel />
+
       <Accessibility />
       <Gallery />
 
-      {/* SOCIAL MEDIA SECTION */}
-      <Social />
+      {/* Social Media Section */}
+      <SocialMedia />
 
       <Contact />
       <Footer />
