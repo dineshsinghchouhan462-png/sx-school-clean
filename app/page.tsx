@@ -7,6 +7,7 @@ import About from "@/components/sections/about"
 import Academics from "@/components/sections/academics"
 import Faculty from "@/components/sections/faculty"
 import Facilities from "@/components/sections/facilities"
+import Hostel from "@/components/sections/hostel"
 import Accessibility from "@/components/sections/accessibility"
 import Gallery from "@/components/sections/gallery"
 import Contact from "@/components/sections/contact"
@@ -16,6 +17,7 @@ export default function Home() {
   return (
     <main>
       <Navigation />
+
       <Hero />
       <Trust />
       <Streams />
@@ -23,6 +25,10 @@ export default function Home() {
       <Academics />
       <Faculty />
       <Facilities />
+
+      {/* NEW: HOSTEL SECTION */}
+      <Hostel />
+
       <Accessibility />
       <Gallery />
       <Contact />
