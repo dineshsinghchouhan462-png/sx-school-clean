@@ -27,13 +27,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} pt-20 antialiased`}>
-        {/* Top scroll indicator */}
         <ScrollProgress />
-
-        {/* Main website content */}
         {children}
-
-        {/* Floating WhatsApp + Call CTA (global) */}
         <FloatingCTA />
       </body>
     </html>
