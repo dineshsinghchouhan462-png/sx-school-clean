@@ -4,40 +4,40 @@ import { Phone, MessageCircle } from "lucide-react"
 
 export default function FloatingCTA() {
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
-      
-      {/* WhatsApp Button */}
+    <div className="fixed bottom-6 right-6 z-[60] flex flex-col gap-3">
+
+      {/* WhatsApp */}
       <a
         href="https://wa.me/919214018172"
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center gap-3 rounded-full
-                   bg-green-500 px-4 py-3 text-white shadow-lg
-                   transition-all duration-300
-                   hover:bg-green-600 hover:scale-[1.05]
-                   active:scale-95"
         aria-label="Chat on WhatsApp"
+        className="
+          group flex items-center justify-center
+          w-14 h-14 rounded-full
+          bg-[#25D366]
+          shadow-lg shadow-black/20
+          transition-all duration-300
+          hover:scale-110 hover:shadow-xl
+        "
       >
-        <MessageCircle className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
-        <span className="text-sm font-medium hidden sm:inline">
-          WhatsApp
-        </span>
+        <MessageCircle className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
       </a>
 
-      {/* Call Button */}
+      {/* Call */}
       <a
         href="tel:+919214018172"
-        className="group flex items-center gap-3 rounded-full
-                   bg-primary px-4 py-3 text-white shadow-lg
-                   transition-all duration-300
-                   hover:scale-[1.05]
-                   active:scale-95"
-        aria-label="Call Now"
+        aria-label="Call School"
+        className="
+          group flex items-center justify-center
+          w-14 h-14 rounded-full
+          bg-[#0B5ED7]
+          shadow-lg shadow-black/20
+          transition-all duration-300
+          hover:scale-110 hover:shadow-xl
+        "
       >
-        <Phone className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
-        <span className="text-sm font-medium hidden sm:inline">
-          Call Now
-        </span>
+        <Phone className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
       </a>
 
     </div>
