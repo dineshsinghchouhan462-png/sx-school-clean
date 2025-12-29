@@ -12,11 +12,10 @@ import {
 export default function Footer() {
   return (
     <footer className="relative bg-neutral-950 text-neutral-300">
-      {/* soft top glow */}
+      {/* subtle top divider */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
-        {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
           {/* BRAND */}
           <div>
@@ -39,7 +38,7 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 mt-0.5 text-white/70" />
                 <span>
-                  Manasar, Nagaur District  
+                  Manasar, Nagaur District
                   <br />
                   Rajasthan, India
                 </span>
@@ -104,7 +103,25 @@ export default function Footer() {
                     transition-all duration-300
                     hover:scale-110
                     hover:bg-white/10
-                    hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]
+                    hover:shadow-[0_0_22px_rgba(255,255,255,0.25)]
                   "
                 >
-                  <item.icon className="w-
+                  <item.icon className="w-5 h-5 text-white/80 group-hover:text-white transition" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* bottom */}
+        <div className="mt-16 border-t border-white/10 pt-6 text-xs text-neutral-500 flex flex-col md:flex-row justify-between gap-4">
+          <span>
+            © 2025 Saint Xavier&apos;s Senior Secondary School. All rights
+            reserved.
+          </span>
+          <span>Designed with care for parents & students</span>
+        </div>
+      </div>
+    </footer>
+  )
+}
