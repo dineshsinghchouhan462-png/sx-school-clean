@@ -1,87 +1,74 @@
 "use client"
 
-import {
-  Instagram,
-  Youtube,
-  Facebook,
-  Hash,
-} from "lucide-react"
+import { Instagram, Facebook, Youtube, Hash } from "lucide-react"
+
+const socials = [
+  {
+    name: "Instagram",
+    desc: "Campus moments & updates",
+    href: "https://www.instagram.com/saint.xaviers.school.nagaur",
+    icon: Instagram,
+    accent: "group-hover:text-pink-500",
+  },
+  {
+    name: "Facebook",
+    desc: "Announcements & events",
+    href: "https://www.facebook.com/share/1K1BYWcDnS/",
+    icon: Facebook,
+    accent: "group-hover:text-blue-600",
+  },
+  {
+    name: "YouTube",
+    desc: "Videos & celebrations",
+    href: "https://youtube.com/@saintxaviersschool",
+    icon: Youtube,
+    accent: "group-hover:text-red-600",
+  },
+  {
+    name: "Threads",
+    desc: "Quick updates & posts",
+    href: "https://www.threads.com/@saint.xaviers.school.nagaur",
+    icon: Hash, // clean, minimal – no image needed
+    accent: "group-hover:text-neutral-900 dark:group-hover:text-white",
+  },
+]
 
 export default function SocialMedia() {
   return (
-    <section className="py-20 bg-muted/40 dark:bg-neutral-900">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 text-center">
+    <section className="py-24 bg-background">
+      <div className="max-w-6xl mx-auto px-6">
         {/* Heading */}
-        <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-          Connect With Saint Xavier’s
-        </h2>
+        <div className="mb-14 text-center">
+          <p className="text-sm tracking-widest text-muted-foreground uppercase">
+            Stay Connected
+          </p>
+          <h2 className="mt-2 text-3xl md:text-4xl font-semibold">
+            Follow Saint Xavier’s Online
+          </h2>
+        </div>
 
-        <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-          Follow our official social platforms for campus life, achievements,
-          student activities and important updates.
-        </p>
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {socials.map((item, i) => (
+            <a
+              key={i}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group rounded-3xl border border-border bg-card p-8
+                         transition-all duration-300
+                         hover:-translate-y-1 hover:shadow-lg"
+            >
+              <item.icon
+                className={`w-10 h-10 mb-6 text-muted-foreground transition-colors duration-300 ${item.accent}`}
+              />
 
-        {/* Social Cards */}
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {/* Instagram */}
-          <a
-            href="https://www.instagram.com/saint.xaviers.school.nagaur"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group rounded-2xl bg-background dark:bg-neutral-800 p-6 shadow-sm
-                       hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-          >
-            <Instagram className="mx-auto h-10 w-10 text-pink-500 group-hover:scale-110 transition-transform" />
-            <p className="mt-4 font-medium text-foreground">Instagram</p>
-            <p className="text-sm text-muted-foreground">
-              Campus moments & updates
-            </p>
-          </a>
-
-          {/* Facebook */}
-          <a
-            href="https://www.facebook.com/share/1K1BYWcDnS/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group rounded-2xl bg-background dark:bg-neutral-800 p-6 shadow-sm
-                       hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-          >
-            <Facebook className="mx-auto h-10 w-10 text-blue-600 group-hover:scale-110 transition-transform" />
-            <p className="mt-4 font-medium text-foreground">Facebook</p>
-            <p className="text-sm text-muted-foreground">
-              Announcements & events
-            </p>
-          </a>
-
-          {/* YouTube */}
-          <a
-            href="https://youtube.com/@saintxaviersschool"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group rounded-2xl bg-background dark:bg-neutral-800 p-6 shadow-sm
-                       hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-          >
-            <Youtube className="mx-auto h-10 w-10 text-red-600 group-hover:scale-110 transition-transform" />
-            <p className="mt-4 font-medium text-foreground">YouTube</p>
-            <p className="text-sm text-muted-foreground">
-              Videos & celebrations
-            </p>
-          </a>
-
-          {/* Threads */}
-          <a
-            href="https://www.threads.com/@saint.xaviers.school.nagaur"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group rounded-2xl bg-background dark:bg-neutral-800 p-6 shadow-sm
-                       hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-          >
-            <Hash className="mx-auto h-10 w-10 text-foreground group-hover:scale-110 transition-transform" />
-            <p className="mt-4 font-medium text-foreground">Threads</p>
-            <p className="text-sm text-muted-foreground">
-              Quick updates & posts
-            </p>
-          </a>
+              <h3 className="text-lg font-medium">{item.name}</h3>
+              <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                {item.desc}
+              </p>
+            </a>
+          ))}
         </div>
       </div>
     </section>
