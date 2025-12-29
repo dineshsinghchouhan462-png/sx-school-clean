@@ -1,106 +1,111 @@
 "use client"
 
-import { MapPin, Phone, Clock, ExternalLink } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, ExternalLink, Navigation } from "lucide-react"
 
 export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-28 bg-accent/30 dark:bg-background"
+      className="relative py-28 bg-muted/40 dark:bg-neutral-900"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        
         {/* Heading */}
-        <div className="mb-20">
-          <h2 className="text-4xl md:text-5xl font-medium tracking-tight">
-            Contact & Location
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
-            Reach us for admissions, inquiries, or a campus visit.
-          </p>
-        </div>
+        <h2 className="text-4xl font-semibold tracking-tight mb-16 text-foreground">
+          Contact & Location
+        </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-
           {/* CONTACT DETAILS */}
-          <div className="space-y-10">
-            
-            {/* Address */}
-            <div className="group transition-transform duration-300 hover:-translate-y-1">
-              <div className="flex gap-4">
-                <MapPin className="mt-1 text-foreground animate-pulse" />
-                <div>
-                  <h4 className="font-medium">Address</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Saint Xavier's Senior Secondary School<br />
-                    Manasar, Nagaur District<br />
+          <div className="space-y-8">
+            {[
+              {
+                icon: MapPin,
+                title: "Address",
+                content: (
+                  <>
+                    Saint Xavier&apos;s Senior Secondary School
+                    <br />
+                    Manasar, Nagaur District
+                    <br />
                     Rajasthan, India
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Phone */}
-            <div className="group transition-transform duration-300 hover:-translate-y-1">
-              <div className="flex gap-4">
-                <Phone className="mt-1 text-foreground" />
-                <div>
-                  <h4 className="font-medium">Contact</h4>
-                  <p className="text-sm text-muted-foreground">
-                    +91 XXXXX XXXXX
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Timing */}
-            <div className="group transition-transform duration-300 hover:-translate-y-1">
-              <div className="flex gap-4">
-                <Clock className="mt-1 text-foreground" />
-                <div>
-                  <h4 className="font-medium">School Hours</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Monday – Saturday<br />
+                  </>
+                ),
+              },
+              {
+                icon: Phone,
+                title: "Contact",
+                content: "+91 XXXXX XXXXX",
+              },
+              {
+                icon: Mail,
+                title: "Email",
+                content: "admin@saintxaviersmanasar.edu.in",
+              },
+              {
+                icon: Clock,
+                title: "Operating Days",
+                content: (
+                  <>
+                    Monday – Saturday
+                    <br />
                     8:00 AM – 4:00 PM
-                  </p>
+                  </>
+                ),
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="group rounded-2xl bg-background dark:bg-neutral-800 p-6 shadow-sm
+                           transition-all duration-300 hover:-translate-y-[2px] hover:shadow-md"
+              >
+                <div className="flex items-start gap-4">
+                  <item.icon className="text-primary mt-1 transition-transform duration-300 group-hover:scale-110" />
+                  <div>
+                    <h3 className="font-medium text-lg">{item.title}</h3>
+                    <p className="text-muted-foreground mt-1 leading-relaxed">
+                      {item.content}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
 
-            {/* Map Link */}
+            {/* External map link */}
             <a
-              href="https://maps.google.com"
+              href="https://www.google.com/maps/place/Saint+Xavier's+Senior+Secondary+School+Manasar"
               target="_blank"
-              className="inline-flex items-center gap-2 text-sm font-medium group mt-6"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-medium text-primary group"
             >
-              <span className="relative">
-                View on Google Maps
-                <span className="absolute left-0 -bottom-1 w-0 h-px bg-foreground transition-all duration-300 group-hover:w-full" />
-              </span>
-              <ExternalLink size={16} />
+              Open in Google Maps
+              <ExternalLink className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
           </div>
 
           {/* MAP */}
-          <div className="relative overflow-hidden rounded-2xl border border-border transition-transform duration-700 hover:scale-[1.01]">
+          <div className="relative overflow-hidden rounded-3xl shadow-lg group">
+            {/* Floating CTA */}
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=Saint+Xavier's+Senior+Secondary+School+Manasar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute top-5 right-5 z-10 inline-flex items-center gap-2
+                         rounded-full bg-background/90 dark:bg-neutral-800/90
+                         px-4 py-2 text-sm font-medium shadow
+                         transition-all duration-300 hover:scale-[1.04]"
+            >
+              <Navigation className="w-4 h-4 text-primary" />
+              Get Directions
+            </a>
+
             <iframe
-              src="https://www.google.com/maps?q=Manasar%20Nagaur%20Rajasthan&output=embed"
-              className="w-full h-[420px]"
+              title="Saint Xavier's School Location"
+              src="https://www.google.com/maps?q=Saint+Xavier's+Senior+Secondary+School+Manasar&output=embed"
+              className="w-full h-[420px] border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-
-            {/* Location Pulse Overlay */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute bottom-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-600" />
-                </span>
-              </div>
-            </div>
           </div>
-
         </div>
       </div>
     </section>
