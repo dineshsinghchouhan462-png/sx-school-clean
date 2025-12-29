@@ -1,70 +1,88 @@
 "use client"
 
-import { Instagram, Facebook, Youtube, Hash } from "lucide-react"
-
-const socials = [
-  {
-    name: "Instagram",
-    desc: "Campus moments & updates",
-    href: "https://www.instagram.com/saint.xaviers.school.nagaur",
-    icon: Instagram,
-  },
-  {
-    name: "Facebook",
-    desc: "Announcements & events",
-    href: "https://www.facebook.com/share/1K1BYWcDnS/",
-    icon: Facebook,
-  },
-  {
-    name: "YouTube",
-    desc: "Videos & celebrations",
-    href: "https://youtube.com/@saintxaviersschool",
-    icon: Youtube,
-  },
-  {
-    name: "Threads",
-    desc: "Quick updates & posts",
-    href: "https://www.threads.com/@saint.xaviers.school.nagaur",
-    icon: Hash, // clean minimal Threads-style icon (no image)
-  },
-]
+import {
+  Instagram,
+  Facebook,
+  Youtube,
+} from "lucide-react"
 
 export default function SocialMedia() {
   return (
-    <section className="py-28 bg-muted/30">
+    <section className="py-24 bg-background">
       <div className="max-w-6xl mx-auto px-6">
         {/* Heading */}
-        <h2 className="text-4xl font-semibold text-foreground mb-14">
-          Connect With Us
+        <h2 className="text-3xl font-semibold tracking-tight text-center mb-14">
+          Stay Connected
         </h2>
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          {socials.map((item, i) => (
-            <a
-              key={i}
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group rounded-3xl bg-background p-8
-                         shadow-sm transition-all duration-300
-                         hover:-translate-y-1 hover:shadow-lg"
+          {/* Instagram */}
+          <a
+            href="https://www.instagram.com/saint.xaviers.school.nagaur"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group rounded-2xl bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+          >
+            <Instagram className="w-10 h-10 text-pink-500 mb-4 transition-transform duration-300 group-hover:scale-110" />
+            <h3 className="text-lg font-medium">Instagram</h3>
+            <p className="text-muted-foreground mt-1">
+              Campus moments & updates
+            </p>
+          </a>
+
+          {/* Facebook */}
+          <a
+            href="https://www.facebook.com/share/1K1BYWcDnS/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group rounded-2xl bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+          >
+            <Facebook className="w-10 h-10 text-blue-600 mb-4 transition-transform duration-300 group-hover:scale-110" />
+            <h3 className="text-lg font-medium">Facebook</h3>
+            <p className="text-muted-foreground mt-1">
+              Announcements & events
+            </p>
+          </a>
+
+          {/* YouTube */}
+          <a
+            href="https://youtube.com/@saintxaviersschool"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group rounded-2xl bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+          >
+            <Youtube className="w-10 h-10 text-red-600 mb-4 transition-transform duration-300 group-hover:scale-110" />
+            <h3 className="text-lg font-medium">YouTube</h3>
+            <p className="text-muted-foreground mt-1">
+              Videos & celebrations
+            </p>
+          </a>
+
+          {/* Threads – REAL ICON (SVG, no image upload) */}
+          <a
+            href="https://www.threads.com/@saint.xaviers.school.nagaur"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group rounded-2xl bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+          >
+            <svg
+              className="w-10 h-10 mb-4 transition-transform duration-300 group-hover:scale-110"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <item.icon
-                className="w-8 h-8 mb-4 text-foreground
-                           transition-transform duration-300
-                           group-hover:scale-110"
-              />
-
-              <h3 className="text-xl font-medium mb-1">
-                {item.name}
-              </h3>
-
-              <p className="text-muted-foreground text-sm">
-                {item.desc}
-              </p>
-            </a>
-          ))}
+              <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.48 0 4.73.99 6.36 2.6" />
+              <path d="M17 12c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5c1.38 0 2.63.56 3.54 1.46" />
+            </svg>
+            <h3 className="text-lg font-medium">Threads</h3>
+            <p className="text-muted-foreground mt-1">
+              Quick updates & posts
+            </p>
+          </a>
         </div>
       </div>
     </section>
