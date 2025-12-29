@@ -11,8 +11,8 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="relative bg-neutral-950 text-neutral-300">
-      {/* subtle top divider */}
+    <footer className="relative bg-gradient-to-b from-neutral-900 via-neutral-950 to-black text-neutral-300 overflow-hidden">
+      {/* top soft glow */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
@@ -72,7 +72,7 @@ export default function Footer() {
               Connect With Us
             </h4>
 
-            <div className="flex gap-4">
+            <div className="flex gap-5">
               {[
                 {
                   icon: Instagram,
@@ -94,7 +94,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="
                     group
-                    w-11 h-11
+                    w-12 h-12
                     rounded-full
                     bg-white/5
                     backdrop-blur
@@ -103,7 +103,7 @@ export default function Footer() {
                     transition-all duration-300
                     hover:scale-110
                     hover:bg-white/10
-                    hover:shadow-[0_0_22px_rgba(255,255,255,0.25)]
+                    hover:shadow-[0_0_30px_rgba(255,255,255,0.35)]
                   "
                 >
                   <item.icon className="w-5 h-5 text-white/80 group-hover:text-white transition" />
@@ -113,13 +113,15 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* bottom */}
-        <div className="mt-16 border-t border-white/10 pt-6 text-xs text-neutral-500 flex flex-col md:flex-row justify-between gap-4">
+        {/* bottom divider */}
+        <div className="mt-16 border-t border-white/10 pt-8 text-sm text-neutral-500 flex flex-col md:flex-row justify-between gap-4">
           <span>
             © 2025 Saint Xavier&apos;s Senior Secondary School. All rights
             reserved.
           </span>
-          <span>Designed with care for parents & students</span>
+          <span className="text-neutral-400">
+            Designed with care for parents & students
+          </span>
         </div>
       </div>
     </footer>
