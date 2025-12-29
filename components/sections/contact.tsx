@@ -6,7 +6,8 @@ import {
   Mail,
   Clock,
   ExternalLink,
-  Navigation
+  Navigation,
+  Image as ImageIcon,
 } from "lucide-react"
 
 export default function Contact() {
@@ -62,8 +63,8 @@ export default function Contact() {
             ].map((item, i) => (
               <div
                 key={i}
-                className="group rounded-2xl bg-background dark:bg-neutral-800
-                           p-6 shadow-sm transition-all duration-300
+                className="group rounded-2xl bg-background dark:bg-neutral-800 p-6
+                           shadow-sm transition-all duration-300
                            hover:-translate-y-[2px] hover:shadow-md"
               >
                 <div className="flex items-start gap-4">
@@ -90,38 +91,47 @@ export default function Contact() {
           </div>
 
           {/* MAP */}
-          <div className="relative overflow-hidden rounded-3xl shadow-xl group">
-            {/* subtle overlay for contrast */}
-            <div className="absolute inset-0 z-[1] pointer-events-none
-                            bg-gradient-to-b from-white/40 to-transparent
-                            dark:from-black/40" />
+          <div className="relative overflow-hidden rounded-3xl shadow-xl">
+            {/* DARK POLISH OVERLAY */}
+            <div className="pointer-events-none absolute inset-0 z-10
+                            bg-gradient-to-t from-black/30 via-transparent to-transparent
+                            dark:from-black/50" />
 
-            {/* Floating CTA */}
+            {/* FLOATING DIRECTIONS CTA */}
             <a
               href="https://www.google.com/maps/dir/?api=1&destination=Saint+Xavier's+Senior+Secondary+School+Manasar"
               target="_blank"
               rel="noopener noreferrer"
-              className="
-                absolute top-5 right-5 z-10
-                inline-flex items-center gap-2
-                rounded-full px-5 py-2.5
-                bg-white/80 dark:bg-neutral-900/80
-                backdrop-blur-md
-                text-sm font-medium
-                shadow-lg ring-1 ring-black/5 dark:ring-white/10
-                transition-all duration-300
-                hover:shadow-xl hover:-translate-y-[1px]
-                group
-              "
+              className="absolute top-5 right-5 z-20 inline-flex items-center gap-2
+                         rounded-full bg-background/80 dark:bg-neutral-800/80
+                         backdrop-blur-md px-5 py-2.5 text-sm font-medium
+                         shadow-lg transition-all duration-300
+                         hover:-translate-y-0.5 hover:shadow-xl"
             >
-              <Navigation className="w-4 h-4 text-primary transition-transform duration-300 group-hover:translate-x-[2px]" />
+              <Navigation className="w-4 h-4 text-primary" />
               Get Directions
             </a>
 
+            {/* CAMPUS PHOTO OVERLAY */}
+            <div className="absolute bottom-5 left-5 z-20 flex items-center gap-3
+                            rounded-xl bg-background/85 dark:bg-neutral-800/85
+                            backdrop-blur-md p-3 shadow-lg">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                <ImageIcon className="h-5 w-5 text-primary" />
+              </div>
+              <div className="text-sm leading-tight">
+                <p className="font-medium">Campus View</p>
+                <p className="text-muted-foreground text-xs">
+                  Saint Xavier&apos;s School
+                </p>
+              </div>
+            </div>
+
+            {/* MAP IFRAME */}
             <iframe
               title="Saint Xavier's School Location"
               src="https://www.google.com/maps?q=Saint+Xavier's+Senior+Secondary+School+Manasar&output=embed"
-              className="w-full h-[420px] border-0 relative z-0"
+              className="relative z-0 w-full h-[420px] border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
