@@ -11,11 +11,17 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="relative bg-gradient-to-b from-neutral-900 via-neutral-950 to-black text-neutral-300">
-      {/* soft top divider glow */}
+    <footer className="relative overflow-hidden bg-neutral-950 text-neutral-300">
+      {/* PREMIUM BACKGROUND GLOW */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute -top-40 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-white/5 blur-[140px]" />
+        <div className="absolute bottom-0 right-0 h-[260px] w-[260px] bg-white/4 blur-[120px]" />
+      </div>
+
+      {/* TOP DIVIDER */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
           {/* BRAND */}
           <div>
@@ -38,7 +44,8 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 mt-0.5 text-white/70" />
                 <span>
-                  Manasar, Nagaur District <br />
+                  Manasar, Nagaur District
+                  <br />
                   Rajasthan, India
                 </span>
               </li>
@@ -71,7 +78,7 @@ export default function Footer() {
               Connect With Us
             </h4>
 
-            <div className="flex gap-4">
+            <div className="flex gap-5">
               {[
                 {
                   icon: Instagram,
@@ -93,34 +100,32 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="
                     group
+                    relative
                     w-12 h-12
                     rounded-full
-                    bg-white/5
-                    backdrop-blur
+                    bg-white/10
+                    backdrop-blur-md
+                    border border-white/15
                     flex items-center justify-center
-                    border border-white/10
                     transition-all duration-300
                     hover:scale-110
-                    hover:bg-white/10
-                    hover:shadow-[0_0_30px_rgba(255,255,255,0.25)]
+                    hover:bg-white/20
+                    hover:shadow-[0_0_35px_rgba(255,255,255,0.35)]
                   "
                 >
-                  <item.icon className="w-5 h-5 text-white/80 group-hover:text-white transition" />
+                  <item.icon className="w-5 h-5 text-white/90 transition group-hover:text-white" />
                 </a>
               ))}
             </div>
           </div>
         </div>
 
-        {/* BOTTOM */}
-        <div className="mt-16 pt-8 border-t border-white/10 text-center">
-          <p className="text-xs text-neutral-500">
-            © 2025 Saint Xavier&apos;s Senior Secondary School. All rights
-            reserved.
-          </p>
-          <p className="mt-2 text-xs text-neutral-600">
+        {/* FOOTER BASE */}
+        <div className="mt-20 pt-8 border-t border-white/10 text-center text-xs text-neutral-500">
+          © 2025 Saint Xavier&apos;s Senior Secondary School. All rights reserved.
+          <div className="mt-2 text-neutral-400">
             Designed with care for parents & students
-          </p>
+          </div>
         </div>
       </div>
     </footer>
